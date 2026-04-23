@@ -1,0 +1,119 @@
+<!-- © 2026 Andrés Iván Rigoni González / Gamiori - Todos los derechos reservados. -->
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Generador de mapa áulico</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Generador de mapa áulico</h1>
+    <div class="controls">
+      <button id="btnGenerate">Generar mapa</button>
+      <button id="btnRandomSeed">Nueva semilla</button>
+      <button id="btnPreferences">Preferencias</button>
+      <button id="btnSaveLS">Guardar en localStorage</button>
+      <button id="btnLoadLS">Cargar desde localStorage</button>
+      <button id="btnExportCSV">Exportar</button>
+      <button id="btnSaveFile">Guardar archivo</button>
+      <button id="btnLoadFile">Cargar archivo</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="left">
+      <h2>Aulas</h2>
+      <div id="yearsList" class="students-list"></div>
+    </section>
+
+    <section class="center">
+      <h2>Aula (vista)</h2>
+      <div class="board">Pizarrón</div>
+      <div id="seatsGrid" class="seats-grid"></div>
+      <div class="legend" id="legendBox">
+        <span class="pill">👓 lentes</span>
+        <span class="pill">1️⃣ primera fila</span>
+        <span class="pill">⚠️ indisciplina</span>
+      </div>
+    </section>
+
+    <section class="right">
+      <h2>Detalles</h2>
+      <div id="details"></div>
+
+      <hr class="divider">
+
+      <h3>Configuración</h3>
+
+      <div class="config">
+
+        <label>
+          Precisión (%)
+          <input type="number" id="cfgPrecision" min="1" max="100" value="50">
+        </label>
+
+        <label>
+          Modo
+          <select id="cfgTheme">
+            <option value="light">Claro</option>
+            <option value="dark">Oscuro</option>
+          </select>
+        </label>
+
+        <button id="btnImportForm">
+          Importar Formulario
+        </button>
+
+        <button id="btnFutureBanks">
+          Determinar ubicaciones de los bancos
+        </button>
+
+        <button id="btnManageStudents">
+          Administrar alumnos
+        </button>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Abriste localmente: index.html, style.css, main.js</small>
+  </footer>
+
+  <!-- MODAL PREFERENCIAS -->
+  <div id="prefsModal" class="modal hidden" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Preferencias de alumnos</h3>
+        <button id="closePrefs" class="close-btn">Cerrar ✕</button>
+      </div>
+      <div class="modal-body">
+        <div id="prefsList" class="prefs-list"></div>
+      </div>
+      <div class="modal-footer">
+        <button id="savePrefs" class="primary">Guardar preferencias</button>
+        <button id="cancelPrefs">Cancelar</button>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL ALUMNOS -->
+  <div id="studentsModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Alumnos</h3>
+        <button id="closeStudents" class="close-btn">Cerrar ✕</button>
+      </div>
+
+      <div class="modal-body">
+        <ol id="studentsAdminList"></ol>
+        <button id="addStudent">➕ Agregar alumno</button>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

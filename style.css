@@ -1,0 +1,204 @@
+/* © 2026 Andrés Iván Rigoni González / Gamiori - Todos los derechos reservados. */
+
+:root{
+  --seat-size:72px;
+  --gap:10px;
+  --aisle:40px;
+  --accent:#d33;
+  --muted:#666;
+}
+
+*{box-sizing:border-box;font-family:Inter, system-ui, Arial, sans-serif}
+body{margin:0;padding:12px;background:#fafafa;color:#111}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px}
+h1{margin:0;font-size:20px;color:var(--accent)}
+.controls button{margin-right:6px}
+.container{display:grid;grid-template-columns:320px 1fr 260px;gap:16px;margin-top:12px}
+.left, .center, .right{background:white;padding:12px;border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,.04)}
+.students-list{display:flex;flex-direction:column;gap:6px;max-height:56vh;overflow:auto;padding-right:6px}
+.student-row{display:flex;align-items:center;gap:6px;border:1px solid #eee;padding:6px;border-radius:6px}
+.student-row input[type="text"]{flex:1;padding:4px;border:1px solid #ddd;border-radius:4px}
+.student-flags{display:flex;gap:6px}
+.small-input{width:36px;padding:4px}
+
+.center{display:flex;flex-direction:column;align-items:center;gap:8px}
+.board{width:100%;text-align:center;padding:6px;background:#222;color:white;border-radius:6px}
+.seats-grid{
+  display:grid;
+  gap: var(--gap);
+  padding:12px;
+  background:linear-gradient(180deg,#fff,#fafafa);
+  border-radius:8px;
+  box-shadow: inset 0 0 0 1px #f0f0f0;
+  width:100%;
+  justify-content:center;
+}
+
+.seat{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid rgba(211,51,51,.6);
+  border-radius:8px;
+  background:white;
+  position:relative;
+  text-align:center;
+  padding:6px;
+  height: 50px;
+  font-size:11px;
+  user-select:none;
+}
+
+.seat .meta{position:absolute;left:6px;top:6px;font-size:11px}
+.seat.conflict{outline:4px solid rgba(255,165,0,.25)}
+.seat.empty{border-style:dashed;color:var(--muted)}
+.legend{margin-top:6px;display:flex;gap:8px;flex-wrap:wrap}
+.pill{background:#fff;padding:6px;border-radius:6px;border:1px solid #eee}
+
+.right h2{margin-top:0}
+#details{font-size:13px;color:var(--muted)}
+footer{margin-top:12px;text-align:center;color:#999}
+
+/* Modal styles */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;z-index:999}
+.modal.hidden{display:none}
+.modal-content{background:white;width:780px;max-width:95%;border-radius:10px;padding:12px;box-shadow:0 20px 40px rgba(0,0,0,.3)}
+.modal-header{display:flex;justify-content:space-between;align-items:center}
+.modal-body{max-height:60vh;overflow:auto;margin-top:8px}
+.close-btn{background:#eee;border:0;padding:8px;border-radius:6px;cursor:pointer}
+.modal-footer{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
+.primary{background:var(--accent);color:white;border:0;padding:8px 12px;border-radius:8px;cursor:pointer}
+
+/* preferences list inside modal */
+.prefs-row{display:flex;gap:8px;align-items:center;border-bottom:1px solid #f2f2f2;padding:8px 0}
+.prefs-row .label{width:180px;font-weight:600}
+.prefs-row select{flex:1;padding:6px;border-radius:6px;border:1px solid #ddd;background:white}
+
+/* responsive small */
+@media (max-width:920px){
+  .container{grid-template-columns:1fr; padding-bottom:60px}
+  .center{order:1}
+}
+.seat{
+    cursor: pointer;
+}
+
+.divider{
+  margin:14px 0;
+  border:none;
+  border-top:1px solid #eee;
+}
+
+.config{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  font-size:13px;
+}
+
+.config label{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.config input,
+.config select{
+  padding:6px;
+  border-radius:6px;
+  border:1px solid #ddd;
+}
+
+.config button{
+  padding:8px;
+  border-radius:6px;
+  border:1px solid #ddd;
+  background:#f5f5f5;
+  cursor:pointer;
+}
+
+/* modo oscuro */
+
+body.dark{
+  background:#1e1e1e;
+  color:#eee;
+}
+
+body.dark .left,
+body.dark .center,
+body.dark .right{
+  background:#2a2a2a;
+}
+
+body.dark .seat{
+  background:#333;
+  border-color:#ff6b6b;
+}
+
+body.dark .board{
+  background:#000;
+}
+.year {
+  border:1px solid #eee;
+  border-radius:6px;
+  padding:6px;
+}
+
+.year-header{
+  display:flex;
+  justify-content:space-between;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.division{
+  margin-left:10px;
+  padding:6px;
+  border-radius:4px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border:1px solid #e0e0e0; /* 👈 nuevo */
+}
+
+.division.saved{
+  background:#c8f7c5;
+}
+
+.division button{
+  margin-left:4px;
+}
+
+body.dark .controls button{
+  background:#444;
+  color:#eee;
+  border:1px solid #666;
+}
+
+body.dark .seats-grid{
+  background:#1a1a1a;
+}
+
+body.dark .pill{
+  background:#333;
+  border:1px solid #555;
+  color:#4fc3f7; /* mantenemos celeste */
+}
+
+#btnSaveLS, #btnLoadLS{
+  display:none;
+}
+
+#btnRandomSeed{
+  display:none;
+}
+
+body.dark .division{
+  border:1px solid #444;
+}
+
+body.dark .division.saved{
+  background:#244d2b;
+  border:1px solid #3c8c4a;
+  color:#b9f6ca;
+}
